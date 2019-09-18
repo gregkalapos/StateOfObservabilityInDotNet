@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Elastic.Apm.NetCoreAll;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +23,6 @@ namespace Currency.Frontend
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddApplicationInsightsTelemetry();
 
 			services.AddControllersWithViews();
 		}
@@ -30,6 +30,7 @@ namespace Currency.Frontend
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+			app.UseAllElasticApm(Configuration);
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();

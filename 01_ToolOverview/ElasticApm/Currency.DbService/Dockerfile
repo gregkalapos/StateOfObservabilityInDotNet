@@ -1,14 +1,14 @@
 #dbbackend
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-rc1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 50001
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100-rc1-buster AS build
 WORKDIR /src
 #COPY ["ESMeetupSample/ESMeetupSample.csproj", "ESMeetupSample/"]
 #RUN dotnet restore "ESMeetupSample/ESMeetupSample.csproj"
-COPY /DbService/ .
+COPY /Currency.DbService/ .
 WORKDIR "/src"
 ENTRYPOINT ["dotnet", "run", "--urls", "http://0.0.0.0:5001"]
 # RUN dotnet build "ESMeetupSample.csproj" -c Release -o /app
