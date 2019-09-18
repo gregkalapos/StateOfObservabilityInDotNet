@@ -8,7 +8,7 @@ namespace Currency.Frontend
 {
 	class MyLibrary
 	{
-		private readonly static DiagnosticSource _diagnosticSource
+		private static readonly DiagnosticSource _diagnosticSource
 			= new DiagnosticListener(typeof(MyLibrary).FullName);
 
 		public double CalculateAverage(IEnumerable<double> items)

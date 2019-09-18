@@ -20,9 +20,6 @@ namespace Currency.Frontend.Controllers
 			_logger = logger;
 		}
 
-		private static double? CurrencyRate;
-
-
 		public async Task<IActionResult> Index()
 		{
 			var httpClient = new HttpClient();
@@ -39,10 +36,8 @@ namespace Currency.Frontend.Controllers
 			dynamic jsObj = JsonConvert.DeserializeObject(strCurrencyRes);
 
 			var rate = (double)jsObj.rates.USD;
-			CurrencyRate = rate;
 
 			ViewData["retVal"] = $"{longVal} EUR is {rate * longVal} USD";
-			CurrencyRate = rate;
 
 			return View();
 		}

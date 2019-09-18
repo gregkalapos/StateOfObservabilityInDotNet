@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Currency.Frontend.Models;
 using System.Net.Http;
+using Elastic.Apm;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,30 +22,38 @@ namespace Currency.Frontend.Controllers
 			_logger = logger;
 		}
 
-		private static double? CurrencyRate;
+		private static double? CurrencyRates;
 
 
 		public async Task<IActionResult> Index()
 		{
 			var httpClient = new HttpClient();
-			var res = await httpClient.GetAsync("http://localhost:5001/api/values");
+			var res = await httpClient.GetAsync("http://dbservice:5001/api/values");
 
 			var strRes = await res.Content.ReadAsStringAsync();
 			var longVal = long.Parse(strRes);
 
-			var startStr = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
-			var endStr = DateTime.Now.ToString("yyyy-MM-dd");
+			if (!CurrencyRates.HasValue)
+			{
+				var startStr = DateTime.Now.AddDays(-30).ToString("yyyy-MM-dd");
+				var endStr = DateTime.Now.ToString("yyyy-MM-dd");
 
-			var currencyConv = await httpClient.GetAsync(
-				$"https://api.exchangeratesapi.io/history?start_at={startStr}&end_at={endStr}&symbols=USD");
+				var currencyConv = await httpClient.GetAsync(
+					$"https://api.exchangeratesapi.io/history?start_at={startStr}&end_at={endStr}&symbols=USD");
 
-			var strCurrencyRes = await currencyConv.Content.ReadAsStringAsync();
+				var strCurrencyRes = await currencyConv.Content.ReadAsStringAsync();
 
-			var historicalData = ParseHistoricalValues(strCurrencyRes);
-			var averageRate = new MyLibrary().CalculateAverage(historicalData);
+				var historicalData = ParseHistoricalValues(strCurrencyRes);
+				var averageRate = new MyLibrary().CalculateAverage(historicalData);
 
-			ViewData["retVal"] = $"{longVal} EUR is {averageRate * longVal} USD";
-			CurrencyRate = averageRate;
+				ViewData["retVal"] = $"{longVal} EUR is {averageRate * longVal} USD";
+				CurrencyRates = averageRate;
+			}
+			else
+			{
+				Agent.Tracer.CurrentTransaction.CaptureSpan("ReadCurrencyRateFromCache", "SuuperDuuperCache",
+					() => { ViewData["retVal"] = $"{longVal} EUR is {CurrencyRates.Value * longVal} USD"; });
+			}
 
 			return View();
 		}
@@ -61,15 +70,15 @@ namespace Currency.Frontend.Controllers
 			{
 				if (wasLastUsd)
 				{
-					var doubleVal = (double)reader.Value;
+					var doubleVal = (double) reader.Value;
 					historicalValues.Add(doubleVal);
 					wasLastUsd = false;
 				}
-				if (reader.Value is string && (string)reader.Value == "USD")
+
+				if (reader.Value is string && (string) reader.Value == "USD")
 				{
 					wasLastUsd = true;
 				}
-
 			}
 
 			return historicalValues;
@@ -83,7 +92,7 @@ namespace Currency.Frontend.Controllers
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+			return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
 		}
 	}
 }
