@@ -26,7 +26,7 @@ namespace Currency.Frontend.Controllers
 		public async Task<IActionResult> Index()
 		{
 			var httpClient = new HttpClient();
-			var res = await httpClient.GetAsync("http://localhost:5001/api/values");
+			var res = await httpClient.GetAsync("http://dbservice:5001/api/values");
 
 			var strRes = await res.Content.ReadAsStringAsync();
 			var longVal = long.Parse(strRes);
