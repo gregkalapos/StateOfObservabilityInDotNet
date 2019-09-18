@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_DiagnosticSourceWithHttp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApp", "02_DiagnosticSource\AspNetCoreApp\AspNetCoreApp.csproj", "{17C58CE4-5887-4E7B-B75C-8AF477F3E783}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_ActivityAndElasticApm", "03_ActivityAndElasticApm", "{F6042643-7811-44EA-8614-C38B0E5EABE7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_ActivityAndElasticApmAndAI", "03_ActivityAndElasticApmAndAI", "{F6042643-7811-44EA-8614-C38B0E5EABE7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency.DbService", "01_ToolOverview\ApplicationInsights\Currency.DbService\Currency.DbService.csproj", "{9BA69A8E-56E0-45F2-9879-8AAAF322D24A}"
 EndProject
@@ -25,9 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency.Frontend", "01_Too
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ElasticApm", "ElasticApm", "{1BC4F850-5A5C-4056-82B5-6FE17388C144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency.DbService", "01_ToolOverview\ElasticApm\Currency.DbService\Currency.DbService.csproj", "{4FDD927A-20EE-4EDF-B777-125F5FA8C066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency.DbService", "01_ToolOverview\ElasticApm\Currency.DbService\Currency.DbService.csproj", "{4FDD927A-20EE-4EDF-B777-125F5FA8C066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency.Frontend", "01_ToolOverview\ElasticApm\Currency.Frontend\Currency.Frontend.csproj", "{A5FE4DC9-5A8F-42D8-9D89-E0E759777298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency.Frontend", "01_ToolOverview\ElasticApm\Currency.Frontend\Currency.Frontend.csproj", "{A5FE4DC9-5A8F-42D8-9D89-E0E759777298}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency.Frontend", "03_ActivityAndElasticApmAndAI\ApplicationInsights\Currency.Frontend\Currency.Frontend.csproj", "{DCB852A4-28A9-41C1-8F49-080C2F1EE5F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Currency.DbService", "03_ActivityAndElasticApmAndAI\ApplicationInsights\Currency.DbService\Currency.DbService.csproj", "{4BE140BF-F32C-4D3E-86A9-11CB4AC43271}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{A5FE4DC9-5A8F-42D8-9D89-E0E759777298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5FE4DC9-5A8F-42D8-9D89-E0E759777298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5FE4DC9-5A8F-42D8-9D89-E0E759777298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB852A4-28A9-41C1-8F49-080C2F1EE5F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB852A4-28A9-41C1-8F49-080C2F1EE5F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB852A4-28A9-41C1-8F49-080C2F1EE5F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB852A4-28A9-41C1-8F49-080C2F1EE5F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BE140BF-F32C-4D3E-86A9-11CB4AC43271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE140BF-F32C-4D3E-86A9-11CB4AC43271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE140BF-F32C-4D3E-86A9-11CB4AC43271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE140BF-F32C-4D3E-86A9-11CB4AC43271}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +94,8 @@ Global
 		{1BC4F850-5A5C-4056-82B5-6FE17388C144} = {5C8EDDE1-CB6F-4BF4-8781-78788788120E}
 		{4FDD927A-20EE-4EDF-B777-125F5FA8C066} = {1BC4F850-5A5C-4056-82B5-6FE17388C144}
 		{A5FE4DC9-5A8F-42D8-9D89-E0E759777298} = {1BC4F850-5A5C-4056-82B5-6FE17388C144}
+		{DCB852A4-28A9-41C1-8F49-080C2F1EE5F6} = {F6042643-7811-44EA-8614-C38B0E5EABE7}
+		{4BE140BF-F32C-4D3E-86A9-11CB4AC43271} = {F6042643-7811-44EA-8614-C38B0E5EABE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A61F358-4266-49C0-BF38-98878C81D9E8}
