@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Currency.Frontend
@@ -29,16 +30,23 @@ namespace Currency.Frontend
 					break;
 
 				case "CalculateAverage.Stop":
-					var tags = new Dictionary<string, string>();
+					var properties = new Dictionary<string, string>();
 					if (Activity.Current != null)
 					{
 						Console.WriteLine("Tags:");
 						foreach (var tag in Activity.Current.Tags)
 						{
-							tags.Add(tag.Key, tag.Value);
+							properties.Add(tag.Key, tag.Value);
 						}
 					}
-					_telemetryClient.TrackEvent("CalculateAverageAsync.Stop",tags);
+
+					if (kv.Value.GetType().GetTypeInfo().GetDeclaredProperty("Result").GetValue(kv.Value)
+						is double result)
+					{
+						properties.Add("Result", result.ToString());
+					}
+
+					_telemetryClient.TrackEvent("CalculateAverageAsync.Stop", properties);
 					break;
 				default:
 					break;
