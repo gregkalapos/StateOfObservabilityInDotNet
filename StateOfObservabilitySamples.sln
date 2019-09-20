@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency.Frontend", "03_Act
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Currency.DbService", "03_ActivityAndElasticApmAndAI\ElasticApm\Currency.DbService\Currency.DbService.csproj", "{C9CF3988-257F-421D-B09F-1D2FBA320B13}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_OpenTelemetry", "04_OpenTelemetry", "{8BF9F731-40EB-4654-BDC7-B377A26408FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTelemetryBasicSample", "04_OpenTelemetry\OpenTelemetryBasicSample\OpenTelemetryBasicSample.csproj", "{3B66569B-1594-4DA6-9559-CD2184720A33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +99,10 @@ Global
 		{C9CF3988-257F-421D-B09F-1D2FBA320B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9CF3988-257F-421D-B09F-1D2FBA320B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9CF3988-257F-421D-B09F-1D2FBA320B13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B66569B-1594-4DA6-9559-CD2184720A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B66569B-1594-4DA6-9559-CD2184720A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B66569B-1594-4DA6-9559-CD2184720A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B66569B-1594-4DA6-9559-CD2184720A33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -116,6 +124,7 @@ Global
 		{E93DD0BC-2163-4462-AE8D-E38FD5D9ECD7} = {F6042643-7811-44EA-8614-C38B0E5EABE7}
 		{A2BDA092-3425-49A3-BF6D-0AD41DA28AB8} = {E93DD0BC-2163-4462-AE8D-E38FD5D9ECD7}
 		{C9CF3988-257F-421D-B09F-1D2FBA320B13} = {E93DD0BC-2163-4462-AE8D-E38FD5D9ECD7}
+		{3B66569B-1594-4DA6-9559-CD2184720A33} = {8BF9F731-40EB-4654-BDC7-B377A26408FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A61F358-4266-49C0-BF38-98878C81D9E8}
