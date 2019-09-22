@@ -12,10 +12,9 @@ namespace OpenTelemetryBasicSample
 	{
 		static void Main(string[] args)
 		{
+			// 1 and 2. - configure the exporeter
 			ConsfigExporter();
-			
-			
-			
+
 			// 3. Tracer is global singleton. You can register it via dependency injection if it exists
 			// but if not - you can use it as follows:
 			var tracer = Tracing.Tracer;
@@ -31,7 +30,7 @@ namespace OpenTelemetryBasicSample
 				}
 			}
 
-			// 5. Gracefully shutdown the exporter so it'll flush queued traces to Zipkin.
+			// 5. Gracefully shutdown the exporter so it'll flush queued traces to Jaeger.
 			Tracing.SpanExporter.Dispose();
 			
 			Console.WriteLine("Press any key to exit!");
